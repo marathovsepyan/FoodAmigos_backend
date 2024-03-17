@@ -2,6 +2,7 @@
 
 namespace App\Services;
 
+use App\Models\Basket;
 use App\Models\Order;
 use Illuminate\Support\Facades\DB;
 
@@ -60,6 +61,7 @@ class OrderService
 
 
             // delete basket
+            Basket::where('user_id', $userId)->delete();
 
             return $order;
         });
