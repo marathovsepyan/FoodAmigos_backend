@@ -17,7 +17,7 @@ return new class extends Migration
             $table->string('phone_number');
             $table->string('shipping_address');
             $table->enum('status', ['pending', 'success', 'failed']);
-            $table->decimal('total');
+            $table->decimal('total', 10, 2);
             $table->unsignedBigInteger('ordered_by')->index();
             $table->timestamps();
 

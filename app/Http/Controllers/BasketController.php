@@ -19,14 +19,15 @@ class BasketController extends Controller
      */
     public function index(Request $request, BasketService $service)
     {
-        $basket = $service->get(
+        $baskets = $service->get(
+            Auth::id(),
             min($request->get('perPage', 10), 100), // get perPage, if empty then default is 10, max value 100
             $request->get('page', 1)
         );
 
         return $this->paginatedResponse(
-            $basket,
-            BasketResource::collection($basket)
+            $baskets,
+            BasketResource::collection($baskets)
         );
     }
 

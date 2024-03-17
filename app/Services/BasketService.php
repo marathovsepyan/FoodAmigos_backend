@@ -21,6 +21,14 @@ class BasketService
             ->paginate(perPage: $perPage, page: $page);
     }
 
+    public function all($userId)
+    {
+        return Basket::query()
+            ->with('product')
+            ->where('user_id', $userId)
+            ->get();
+    }
+
     public function store($userId, array $data)
     {
         return Basket::firstOrCreate([

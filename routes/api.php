@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\BasketController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\OrderController;
 
 /*
 |--------------------------------------------------------------------------
@@ -30,6 +31,15 @@ Route::middleware('auth:sanctum')->group(function(){
         Route::patch('{basketId}', [BasketController::class, 'update']);
         Route::delete('{basketId}', [BasketController::class, 'delete']);
     });
+
+    Route::prefix('orders')->group(function(){
+        Route::get('', [OrderController::class, 'index']);
+        Route::post('', [OrderController::class, 'store']);
+    });
+
+
+
+
 });
 
 
