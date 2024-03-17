@@ -4,6 +4,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\BasketController;
+use App\Http\Controllers\UserController;
 
 /*
 |--------------------------------------------------------------------------
@@ -22,7 +23,18 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 
 Route::get('products', [ProductController::class, 'index']);
 
-Route::get('baskets', [BasketController::class, 'index']);
-Route::post('baskets', [BasketController::class, 'store']);
-Route::patch('baskets/{basketId}', [BasketController::class, 'update']);
-Route::delete('baskets/{basketId}', [BasketController::class, 'delete']);
+Route::middleware('auth:sanctum')->group(function(){
+    Route::prefix('baskets')->group(function(){
+        Route::get('', [BasketController::class, 'index']);
+        Route::post('', [BasketController::class, 'store']);
+        Route::patch('{basketId}', [BasketController::class, 'update']);
+        Route::delete('{basketId}', [BasketController::class, 'delete']);
+    });
+});
+
+
+
+
+Route::post('sign-up', [UserController::class, 'signUp']);
+Route::post('tokens', [UserController::class, 'issueToken']);
+

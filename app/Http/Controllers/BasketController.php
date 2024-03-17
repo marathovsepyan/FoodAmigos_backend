@@ -37,7 +37,7 @@ class BasketController extends Controller
      */
     public function store(StoreBasketRequest $request, BasketService $service)
     {
-        $basket = $service->store(Auth::id() ?? 1, $request->validated());
+        $basket = $service->store(Auth::id(), $request->validated());
 
         return response()->json([
             'data' => new BasketResource($basket)
@@ -59,7 +59,7 @@ class BasketController extends Controller
 
     public function delete($basketId, BasketService $service)
     {
-        $service->delete($basketId);
+        $service->delete($basketId, Auth::id());
 
         return response('', Response::HTTP_NO_CONTENT);
     }

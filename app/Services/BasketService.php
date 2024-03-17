@@ -38,10 +38,11 @@ class BasketService
 
     /**
      * @param $basketId
+     * @param $userId
      * @return mixed
      */
-    public function delete($basketId)
+    public function delete($basketId, $userId)
     {
-        return Basket::where('id', $basketId)->delete();
+        return Basket::where('id', $basketId)->where('user_id', $userId)->delete();
     }
 }
