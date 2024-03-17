@@ -7,11 +7,11 @@ use App\Models\Product;
 class ProductService
 {
     /**
-     * @param $perPage
-     * @param $page
+     * @param int $perPage
+     * @param int $page
      * @return \Illuminate\Contracts\Pagination\LengthAwarePaginator
      */
-    public function get($perPage, $page=1)
+    public function get(int $perPage, int $page=1)
     {
         return Product::query()->orderBy('created_at', 'desc')->paginate(perPage: $perPage, page: $page);
     }

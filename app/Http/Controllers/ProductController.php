@@ -19,12 +19,9 @@ class ProductController extends Controller
             min($request->get('perPage', 10), 100), // get perPage, if empty then default is 10, max value 100
             $request->get('page', 1)
         );
-        return response()->json([
-            'data' => ProductResource::collection($products),
-            'total' => $products->total(),
-            'hasNextPage' => $products->hasMorePages(),
-            'perPage' => $products->perPage(),
-            'page' => $products->currentPage(),
-        ]);
+        return $this->paginatedResponse(
+            $products,
+            ProductResource::collection($products)
+        );
     }
 }

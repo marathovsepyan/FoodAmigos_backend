@@ -3,6 +3,7 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProductController;
+use App\Http\Controllers\BasketController;
 
 /*
 |--------------------------------------------------------------------------
@@ -20,3 +21,8 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 });
 
 Route::get('products', [ProductController::class, 'index']);
+
+Route::get('baskets', [BasketController::class, 'index']);
+Route::post('baskets', [BasketController::class, 'store']);
+Route::patch('baskets/{basketId}', [BasketController::class, 'update']);
+Route::delete('baskets/{basketId}', [BasketController::class, 'delete']);
