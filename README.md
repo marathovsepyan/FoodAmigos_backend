@@ -5,7 +5,7 @@
 ```
 git clone <project>
 
-cd <project>/src
+cd <project>
 cp .env.example .env
 
 // set this env variables (optional)
@@ -20,7 +20,7 @@ FORWARD_DB_PORT=5455  // default 5432
 // run 
 ./vendor/bin/sail up
 
-// after that
+// after that run
 ./vendor/bin/sail php artisan migrate
 ./vendor/bin/sail php artisan db:seed
 
